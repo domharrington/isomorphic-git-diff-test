@@ -165,9 +165,10 @@ async function main() {
     author,
   });
 
-  const [firstCommit] = (await git.log({ fs, dir })).reverse();
+  const [firstCommit, secondCommit] = (await git.log({ fs, dir })).reverse();
 
-  console.log(await diff(dir, firstCommit.oid));
+  console.log(firstCommit.commit.message, await diff(dir, firstCommit.oid));
+  console.log(secondCommit.commit.message, await diff(dir, secondCommit.oid));
 }
 
 main();
