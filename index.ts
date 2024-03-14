@@ -21,7 +21,11 @@ async function diff(dir: string, sha: string) {
     fs,
     dir,
     trees: [
-      git.TREE({ ref: commit.commit.parent?.[0] }),
+      git.TREE({
+        ref:
+          commit.commit.parent?.[0] ||
+          "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+      }),
       git.TREE({ ref: commit.oid }),
     ],
     async map(filepath, [A, B]) {
